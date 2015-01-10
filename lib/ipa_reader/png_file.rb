@@ -4,7 +4,8 @@ require 'zlib'
 module IpaReader
   class PngFile
     def self.normalize_png(oldPNG)
-      pngheader = "\x89PNG\r\n\x1a\n".force_encoding('ASCII-8BIT')
+      pngheader = "\x89PNG\r\n\x1a\n".force_encoding('binary')
+      oldPNG.force_encoding('binary')
 
       if oldPNG[0...8] != pngheader
         return nil
